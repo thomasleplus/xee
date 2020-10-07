@@ -12,6 +12,9 @@ public class SecureXML {
     	final SchemaFactory sf = SchemaFactory.newInstance(schemaLanguage);
 		sf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
 		sf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+		// sf.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+		// sf.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+		// throws org.xml.sax.SAXNotRecognizedException: Property 'http://javax.xml.XMLConstants/property/...' is not recognized.
 		return sf;
     }
     

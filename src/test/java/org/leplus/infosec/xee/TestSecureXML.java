@@ -28,7 +28,7 @@ public class TestSecureXML {
 			+ "]>"
 			+ "<note>&space;</note>";
 
-	@Test(expected=org.xml.sax.SAXException.class)
+	@Test
 	public void testCreateSchemaFactory() throws SAXException, IOException {
 		final SchemaFactory factory = SecureXML.createSchemaFactory(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		final Schema schema = factory.newSchema(new StreamSource(new ByteArrayInputStream(VALID_XML_SCHEMA.getBytes())));
