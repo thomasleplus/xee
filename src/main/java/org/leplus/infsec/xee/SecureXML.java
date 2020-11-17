@@ -1,4 +1,4 @@
-package org.leplus.infsec.xee;
+package org.leplus.infosec.xee;
 
 import javax.xml.XMLConstants;
 import javax.xml.validation.SchemaFactory;
