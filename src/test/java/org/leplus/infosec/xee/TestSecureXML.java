@@ -1,4 +1,4 @@
-package org.leplus.infsec.xee;
+package org.leplus.infosec.xee;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
