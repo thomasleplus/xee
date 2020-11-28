@@ -11,7 +11,7 @@ public class SecureXML {
     public static SchemaFactory createSchemaFactory(final String schemaLanguage) throws SAXNotRecognizedException, SAXNotSupportedException {
     	final SchemaFactory sf = SchemaFactory.newInstance(schemaLanguage);
 		sf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
-		sf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+		sf.setFeature(schemaLanguage,true);
 		return sf;
     }
     
