@@ -49,7 +49,12 @@ jobs:
       - name: Build with Maven
         if: "github.ref == '@TL FIXME: tests fail until solved'"
         run: |
+          # Forcing dependency check version to a version compatible
+          # with Java 8 since version does not matter due to
+          # dependencyCheck.skip=true. But otherwise Maven initialization
+          # fails with error: "java.lang.TypeNotPresentException:
+          # Type org.owasp.dependencycheck.maven.CheckMojo not present".
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true verify
+          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.version=10.0.4 -DdependencyCheck.skip=true verify
       - name: Clean up
         run: rm "${HOME}/.m2/settings.xml"
