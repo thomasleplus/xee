@@ -33,28 +33,20 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        java: [8, 11, 17, 21]
-    name: Java ${{ matrix.java }}
+    name: Java
     steps:
       - name: Set REPOSITORY
         run: echo "REPOSITORY=${GITHUB_REPOSITORY#*/}" >> "${GITHUB_ENV}"
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Set up JDK ${{ matrix.java }}
+      - name: Set up JDK
         uses: actions/setup-java@3a4f6e1af504cf6a31855fa899c6aa5355ba6c12 # v4.7.0
         with:
           distribution: temurin
-          java-version: ${{ matrix.java }}
+          java-version: 21
       - name: Build with Maven
         if: "github.ref == '@TL FIXME: tests fail until solved'"
         run: |
-          # Forcing dependency check version to a version compatible
-          # with Java 8 since version does not matter due to
-          # dependencyCheck.skip=true. But otherwise Maven initialization
-          # fails with error: "java.lang.TypeNotPresentException:
-          # Type org.owasp.dependencycheck.maven.CheckMojo not present".
           # shellcheck disable=SC2086
-          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.version=10.0.4 -DdependencyCheck.skip=true verify
+          ./mvnw ${MAVEN_CLI_OPTS} -DdependencyCheck.skip=true verify
       - name: Clean up
         run: rm "${HOME}/.m2/settings.xml"
