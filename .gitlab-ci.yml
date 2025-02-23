@@ -52,7 +52,7 @@ maven check versions:
     - "/opt/maven-check-versions.sh"
   timeout: 10 minutes
 
-verify:openjdk21:
+verify:jdk:
   stage: test
   image: maven:3-eclipse-temurin-21-alpine
   script:
