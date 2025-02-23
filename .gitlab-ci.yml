@@ -56,6 +56,6 @@ verify:openjdk21:
   stage: test
   image: maven:3-eclipse-temurin-21-alpine
   script:
-    - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.skip=true verify"
+    - "./mvnw $MAVEN_CLI_OPTS verify"
   only:
     - master
