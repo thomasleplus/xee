@@ -5,7 +5,7 @@ include:
 
 stages:
   - check
-  - test
+  - build
 
 variables:
   MAVEN_OPTS: >
@@ -52,10 +52,8 @@ maven check versions:
     - "/opt/maven-check-versions.sh"
   timeout: 10 minutes
 
-verify:jdk:
-  stage: test
+verify:
+  stage: build
   image: maven:3-eclipse-temurin-21-alpine
   script:
     - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.skip=true verify"
-  only:
-    - master
