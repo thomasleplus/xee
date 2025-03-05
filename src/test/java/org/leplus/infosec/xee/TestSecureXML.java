@@ -12,14 +12,23 @@ import javax.xml.validation.Validator;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
+/**
+ * Tests SecureXML.
+ */
 public class TestSecureXML {
-	
+
+	/**
+	 * Valid XML schema.
+	 */
 	public static final String VALID_XML_SCHEMA
 			= "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 			+ "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">"
 			+ "  <xs:element name=\"note\"/>"
 			+ "</xs:schema>";
 
+	/**
+	 * Valid XML document with external entity.
+	 */
 	public static final String VALID_XML_DOC_WITH_EXTERNAL_GENERAL_ENTITY
 			= "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 			+ "<!DOCTYPE note ["
@@ -28,6 +37,19 @@ public class TestSecureXML {
 			+ "]>"
 			+ "<note>&space;</note>";
 
+	/**
+	 * Default constructor.
+	 */
+	public TestSecureXML() {
+		super();
+	}
+
+	/**
+	 * Tests the createSchemaFactory() method.
+	 *
+	 * @throws SAXException if test fails.
+	 * @throws IOException should not happen since file is hard-coded.
+	 */
 	@Test
 	public void testCreateSchemaFactory() throws SAXException, IOException {
 		final SchemaFactory factory = SecureXML.createSchemaFactory(XMLConstants.W3C_XML_SCHEMA_NS_URI);

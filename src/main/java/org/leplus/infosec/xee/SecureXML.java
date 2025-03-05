@@ -6,9 +6,27 @@ import javax.xml.validation.SchemaFactory;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 
+/**
+ * Secure XML parser factory.
+ */
 public class SecureXML {
-	
-    public static SchemaFactory createSchemaFactory(final String schemaLanguage) throws SAXNotRecognizedException, SAXNotSupportedException {
+
+	/**
+	 * Private constructor to prevent instantiation.
+	 */
+	private SecureXML() {
+		super();
+	}
+
+	/**
+	 * Creates a secured schema factory.
+	 *
+	 * @param schemaLanguage the desired schema language.
+	 * @return the schema factory.
+	 * @throws SAXNotRecognizedException if a required security feature is not recognized.
+	 * @throws SAXNotSupportedException if a required security feature is not supported.
+	 */
+	public static SchemaFactory createSchemaFactory(final String schemaLanguage) throws SAXNotRecognizedException, SAXNotSupportedException {
     	final SchemaFactory sf = SchemaFactory.newInstance(schemaLanguage);
 		sf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
 		sf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
