@@ -21,7 +21,11 @@ jobs:
         shell: bash
         run: |
           pip install yamllint==1.35.0
-          exit $( pip list --outdated | grep -c -e yamllint )
+          msg="$(pip list --outdated | grep -e yamllint)"
+          if [ -z "${msg}" ]; then
+            >&2 echo "ERROR: outdated: ${msg}"
+            exit 1
+          fi
       - name: Run YAMLLint
         shell: bash
         run: "yamllint -d '{extends: relaxed, rules: {line-length: disable, trailing-spaces: disable}}' ."
