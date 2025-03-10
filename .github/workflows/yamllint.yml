@@ -28,4 +28,4 @@ jobs:
           fi
       - name: Run YAMLLint
         shell: bash
-        run: "yamllint -d '{extends: relaxed, rules: {line-length: disable, trailing-spaces: disable}}' ."
+        run: "yamllint -d '{extends: default, rules: {line-length: disable}}' ."
