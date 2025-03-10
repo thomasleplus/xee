@@ -22,7 +22,7 @@ jobs:
         run: |
           pip install yamllint==1.35.0
           msg="$(pip list --outdated | grep -e yamllint)"
-          if [ -z "${msg}" ]; then
+          if [ -n "${msg}" ]; then
             >&2 echo "ERROR: outdated: ${msg}"
             exit 1
           fi
