@@ -20,8 +20,8 @@ jobs:
       - name: Install YAMLLint
         shell: bash
         run: |
-          pip install yamllint==1.35.1
-          msg="$(pip list --outdated | grep -e yamllint)"
+          pip install yamllint==1.35.0
+          msg="$(pip list --outdated | grep -e yamllint || true)"
           if [ -n "${msg}" ]; then
             >&2 echo "ERROR: outdated: ${msg}"
             exit 1
