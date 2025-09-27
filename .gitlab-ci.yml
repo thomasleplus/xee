@@ -1,14 +1,16 @@
 ---
 include:
-  - template: Security/Secret-Detection.gitlab-ci.yml
-  - template: Security/SAST.gitlab-ci.yml
-  - template: Security/SAST-IaC.gitlab-ci.yml
+  - template: Jobs/Secret-Detection.gitlab-ci.yml
+  - template: Jobs/SAST.gitlab-ci.yml
+  - template: Jobs/SAST-IaC.gitlab-ci.yml
 
 stages:
   - check
   - build
 
 variables:
+  SAST_SEMGREP_METRICS: false
+  SEMGREP_SEND_METRICS: off
   MAVEN_OPTS: >
     -Dhttps.protocols=TLSv1.2
     -Dmaven.repo.local=.m2/repository
@@ -70,31 +72,6 @@ super-linter:
     - "/action/lib/linter.sh"
   timeout: 10 minutes
 
-semgrep:
-  image:
-    name: semgrep/semgrep:latest
-    entrypoint:
-      - ""
-  stage: check
-  before_script:
-    - 'ln -s "$(pwd)" /src'
-  script: |
-    semgrep scan \
-      --config p/c \
-      --config p/ci \
-      --config p/docker \
-      --config p/expressjs \
-      --config p/flask \
-      --config p/insecure-transport \
-      --config p/jwt \
-      --config p/python \
-      --config p/r2c \
-      --config p/react \
-      --config p/ruby \
-      --config p/secrets \
-      --config p/security-audit
-  timeout: 10 minutes
-
 maven-check-versions:
   image: leplusorg/maven-check-versions:3.9.11@sha256:cabe45dc45c644032ba61b2f43e304baf382e834efe76d74a81c666b893c5dc2
   stage: check
@@ -102,7 +79,7 @@ maven-check-versions:
     MAVEN_CLI_EXTRA_OPTS: "-DprocessDependencyManagementTransitive=false -Dmaven.version.ignore=(?i).+-(alpha|beta).+,(?i).+-m\\d+,(?i).+-rc\\d+"
   timeout: 10 minutes
 
-verify:
+maven:
   stage: build
   image: maven:3-eclipse-temurin-21-alpine
   script:
