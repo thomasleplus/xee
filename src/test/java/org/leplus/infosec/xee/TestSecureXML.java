@@ -45,7 +45,7 @@ public class TestSecureXML {
     final SchemaFactory factory = SecureXML.createSchemaFactory(XMLConstants.W3C_XML_SCHEMA_NS_URI);
     final Schema schema =
         factory.newSchema(new StreamSource(new ByteArrayInputStream(VALID_XML_SCHEMA.getBytes())));
-    final Validator validator = schema.newValidator();
+    final Validator validator = SecureXML.secureValidator(schema.newValidator());
     validator.validate(
         new StreamSource(
             new ByteArrayInputStream(VALID_XML_DOC_WITH_EXTERNAL_GENERAL_ENTITY.getBytes())));

@@ -4,18 +4,27 @@ Demo project to test XEE prevention API in Java Xerces.
 
 [![Maven](https://github.com/thomasleplus/xee/workflows/Maven/badge.svg)](https://github.com/thomasleplus/xee/actions?query=workflow:"Maven")
 
+The `external-general-entities = false` feature is accepted but not
+blocking entity loading in the Xerces `ValidatorImpl`. We need to use
+`setResourceResolver()` to intercept and neutralize external entity
+requests instead.
+
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code
+of conduct and the process for submitting pull requests.
 
 ## Security
 
-Please read [SECURITY.md](SECURITY.md) for details on our security policy and how to report security vulnerabilities.
+Please read [SECURITY.md](SECURITY.md) for details on our security
+policy and how to report security vulnerabilities.
 
 ## Code of Conduct
 
-Please read [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for details on our code of conduct.
+Please read [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for details on
+our code of conduct.
 
 ## License
 
-This project is licensed under the terms of the [LICENSE](LICENSE) file.
+This project is licensed under the terms of the [LICENSE](LICENSE)
+file.
