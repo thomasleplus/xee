@@ -109,3 +109,29 @@ maven:
       - .m2/repository
   script:
     - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.skip=true verify"
+
+maven:jdk25:
+  stage: build
+  image:
+    name: maven:3-eclipse-temurin-25-alpine
+    entrypoint:
+      - "" # Entrypoint is overridden by GitLab anyway
+  cache:
+    key: maven
+    paths:
+      - .m2/repository
+  script:
+    - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.skip=true verify"
+
+maven:jdk26:
+  stage: build
+  image:
+    name: maven:3-eclipse-temurin-26-alpine
+    entrypoint:
+      - "" # Entrypoint is overridden by GitLab anyway
+  cache:
+    key: maven
+    paths:
+      - .m2/repository
+  script:
+    - "./mvnw $MAVEN_CLI_OPTS -DdependencyCheck.skip=true verify"
